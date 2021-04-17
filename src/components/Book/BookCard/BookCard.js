@@ -11,7 +11,7 @@ const BookCard = ({booking, date}) => {
       setIsOpen(false);
     }
   
-    return (
+    return ( 
     
         <div className=" col-md-4 mb-5">
         <div className="card p-3">

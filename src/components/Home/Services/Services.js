@@ -7,6 +7,7 @@ import plum from '../../../images/plumbing.png';
 import water from '../../../images/water-pipe.png';
 import over from '../../../images/water-pipe.png'
 import ServiceDetail from '../ServiceDetail/ServiceDetail';
+import { Link} from 'react-router-dom';
 
 const serviceData=[
     {
@@ -48,7 +49,7 @@ const Services = () => {
             </div>
         </div>
         <div>
-        
+        <h1 style={{textAlign: 'center'}}>Let's  <Link to="/book">Book Service</Link></h1>
         </div>
        </section>
     );

@@ -54,7 +54,7 @@ const Booking = ({date}) => {
           {
                     bookingData.map(booking => <BookCard booking={booking} date={date} key={booking.id}></BookCard>)
                 }
-      </section> 
+      </section>  
     );
 };
 
