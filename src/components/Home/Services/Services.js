@@ -1,5 +1,4 @@
 import React from 'react';
-//import { Link } from 'react-router-dom';
 import leak from '../../../images/leak.png';
 import plumber from '../../../images/plumber.png';
 import toilet from '../../../images/toilet.png';

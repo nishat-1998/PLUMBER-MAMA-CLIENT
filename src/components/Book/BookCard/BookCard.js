@@ -13,7 +13,7 @@ const BookCard = ({booking, date}) => {
   
     return ( 
     
-        <div className=" col-md-4 mb-5">
+        <div className=" col-md-4 mb-5"> 
         <div className="card p-3">
             <div className="card-body text-center ">
                 <h5 className="card-title text-brand">{booking.subject}</h5>

@@ -1,6 +1,6 @@
 import React,{useEffect,useState} from 'react';
 import Testimonial from '../Testimonial/Testimonial';
-import './Testimonials.css';
+import './Testimonials.css'; 
 
 
 const Testimonials = () => {

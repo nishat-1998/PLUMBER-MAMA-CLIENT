@@ -72,4 +72,4 @@ const AddReview = () => {
     );
 };
 
-export default AddReview;
+export default AddReview; 

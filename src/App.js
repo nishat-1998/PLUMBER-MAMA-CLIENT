@@ -12,6 +12,8 @@ import Dashboard from './components/Dashboard/Dashboard/Dashboard';
 import Book from './components/Book/Book/Book';
 import AllClients from './components/AllClients/AllClients/AllClients';
 import AddReview from './components/AddReview/AddReview';
+import AddService from './components/AddService/AddService'
+import PrivateRoute from './components/Login/PrivateRoute/PrivateRoute'
 
 export const UserContext = createContext();
 
@@ -21,18 +23,21 @@ function App() {
     <UserContext.Provider value={[loggedInUser, setLoggedInUser]}>
     <Router>
       <Switch>
-      <Route path="/book">
+      <PrivateRoute path="/book">
         <Book></Book>
-      </Route>
-      <Route path="/dashboard">
+      </PrivateRoute>
+      <PrivateRoute path="/dashboard">
             <Dashboard></Dashboard>
-          </Route>
-          <Route path="/addReview">
+          </PrivateRoute>
+          <PrivateRoute path="/addService">
+         <AddService></AddService>
+          </PrivateRoute>
+          <PrivateRoute path="/addReview">
          <AddReview></AddReview>
-          </Route>
-          <Route path="/allClients">
+          </PrivateRoute>
+          <PrivateRoute path="/allClients">
            <AllClients></AllClients>
-          </Route>
+          </PrivateRoute>
       <Route path="/login">
             <Login></Login>
           </Route>
