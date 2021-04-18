@@ -24,7 +24,7 @@ const AddReview = () => {
       formData.append('comment', info.comment);
       formData.append('from', info.from);
 
-      fetch('http://localhost:5055/addReview', {
+      fetch('https://peaceful-harbor-44348.herokuapp.com/addReview', {
           method: 'POST',
           body: formData
       })

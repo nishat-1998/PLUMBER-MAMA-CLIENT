@@ -7,11 +7,11 @@ const Testimonials = () => {
     const [testimonials,setTestimonials] = useState([])
 
     useEffect( () => {
-        fetch('http://localhost:5055/reviews')
+        fetch('https://peaceful-harbor-44348.herokuapp.com/reviews')
         .then(res => res.json())
         .then(data => setTestimonials(data))
     }, [])
-
+ 
     return (
        <section className="testimonials my-5 py-5">
            <div className="container">

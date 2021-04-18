@@ -14,6 +14,7 @@ import AllClients from './components/AllClients/AllClients/AllClients';
 import AddReview from './components/AddReview/AddReview';
 import AddService from './components/AddService/AddService'
 import PrivateRoute from './components/Login/PrivateRoute/PrivateRoute'
+import AddAdmin from './components/AddAdmin/AddAdmin';
 
 export const UserContext = createContext();
 
@@ -34,6 +35,9 @@ function App() {
           </PrivateRoute>
           <PrivateRoute path="/addReview">
          <AddReview></AddReview>
+          </PrivateRoute>
+          <PrivateRoute path="/addAdmin">
+         <AddAdmin></AddAdmin>
           </PrivateRoute>
           <PrivateRoute path="/allClients">
            <AllClients></AllClients>

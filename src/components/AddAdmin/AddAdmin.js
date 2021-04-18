@@ -1,9 +1,7 @@
 import React,{useState} from 'react';
 import Sidebar from '../Dashboard/Sidebar/Sidebar';
 
-   
-const AddService = () => {
-
+const AddAdmin = () => {
     const [info,setInfo] =useState({});
     const [file, setFile] = useState(null);
     const handleBlur = e =>{
@@ -21,11 +19,10 @@ const AddService = () => {
       const formData = new FormData()
       console.log(info);
       formData.append('file', file); 
-      formData.append('subject', info.subject);
-      formData.append('ele', info.ele);
-      formData.append('cost', info.cost);
+      formData.append('name', info.name);
+      formData.append('email', info.email);
 
-      fetch('https://peaceful-harbor-44348.herokuapp.com/addService', {
+      fetch('https://peaceful-harbor-44348.herokuapp.com/addAdmin', {
           method: 'POST',
           body: formData
       })
@@ -37,30 +34,26 @@ const AddService = () => {
               console.error(error)
           })
   }
-
     return (
         <section className="container-fluid row">
         <Sidebar></Sidebar>
         <div className="col-md-10 p-4 pr-5" style={{ position: "absolute", right: 0, backgroundColor: "#F4FDFB" }}>
-            <h5 className="text-brand">Add a Service</h5>
+            <h5 className="text-brand">Add a Admin</h5>
             <form onSubmit={handleSubmit}>
+                <div className="form-group">
+                    <label htmlFor="exampleInputEmail1">Email address</label>
+                    <input onBlur={handleBlur} type="email" className="form-control" name="email" placeholder="Enter email" />
+                </div>
+                <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Name</label>
+                    <input onBlur={handleBlur} type="text" className="form-control" name="name" placeholder="Name" />
+                </div>
+                
+                <div className="form-group">
+                    <label htmlFor="exampleInputPassword1">Upload a image</label>
+                    <input onChange={handleFileChange} type="file" className="form-control" id="exampleInputPassword1" placeholder="Picture" />
+                </div>
                
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Subject</label>
-                    <input onBlur={handleBlur} type="text" className="form-control" name="subject" placeholder="subject" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Elements</label>
-                    <input onBlur={handleBlur} type="text" className="form-control" name="ele" placeholder="ele" />
-                </div>
-                <div className="form-group">
-                    <label htmlFor="exampleInputPassword1">Cost</label>
-                    <input onBlur={handleBlur} type="number" className="form-control" name="cost" placeholder="cost" />
-                </div>
-                <div className="form-group">
-                  <label htmlFor="exampleInputPassword1">Upload a icon</label>
-                  <input onChange={handleFileChange} type="file" className="form-control" id="exampleInputPassword1" placeholder="Picture" />
-              </div>
                 <button type="submit" className="btn btn-warning">Submit</button>
             </form>
         </div>
@@ -68,4 +61,4 @@ const AddService = () => {
     );
 };
 
-export default AddService;
+export default AddAdmin;

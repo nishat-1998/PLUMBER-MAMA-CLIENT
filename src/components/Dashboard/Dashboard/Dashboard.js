@@ -19,7 +19,7 @@ const Dashboard = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5055/bookingByDate', {
+        fetch('https://peaceful-harbor-44348.herokuapp.com/bookingByDate', {
             method: 'POST',
             headers: { 'content-type': 'application/json'},
             body: JSON.stringify({date: selectedDate })
@@ -27,7 +27,7 @@ const Dashboard = () => {
         .then(res=>res.json())
         .then(data => setBooks(data))
     }, [selectedDate])
-
+  
     return (
         <section>
             <div style={containerStyle} className="container-fluid row">

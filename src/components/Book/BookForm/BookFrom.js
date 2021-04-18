@@ -1,6 +1,11 @@
-import React from 'react';
+import React,{useState} from 'react';
 import Modal from 'react-modal';
 import { useForm } from "react-hook-form";
+import ProcessPayment from '../ProcessPayment/ProcessPayment';
+import {Elements} from '@stripe/react-stripe-js';
+import {loadStripe} from '@stripe/stripe-js';
+
+const stripePromise = loadStripe('pk_test_51Ie12hBWfEFcwoJKPjRH7HQdwoXzf1H0txLnBUEWtII1Uup3oofpOgjUSvEq80WvU62lje3STODP1FN8XKWI4igQ00Igazvvok');
 
 const customStyles = {
     content: {
@@ -15,19 +20,25 @@ const customStyles = {
 
 Modal.setAppElement('#root')
 
-
 const BookForm = ({modalIsOpen,closeModal,BookOn,date}) => {
     const { register, handleSubmit, errors } = useForm();
-      
+    const [bookingData,setBookingData] =useState(null);
+    
+
     const onSubmit = data => {
         data.service = BookOn;
-        data.date = date;
-        data.created = new Date();
-
-        fetch('http://localhost:5055/addBooking', {
+        data.date = bookingData;
+       data.created = new Date();
+        setBookingData(data);
+    }
+    const handlePaymentSuccess =  paymentId =>{
+      const newData= {
+          ...bookingData,paymentId
+      }
+        fetch('https://peaceful-harbor-44348.herokuapp.com/addBooking', {
             method: 'POST',
             headers: { 'content-type': 'application/json' },
-            body: JSON.stringify(data)
+          body: JSON.stringify(newData)
         })
         .then(res => res.json())
         .then(success => {
@@ -36,21 +47,22 @@ const BookForm = ({modalIsOpen,closeModal,BookOn,date}) => {
                  alert('Booking created successfully.');
             }
         })
-    
     }
+
     return (
         <div>
 
-       
-          <Modal
+<Modal
                 isOpen={modalIsOpen}
                 onRequestClose={closeModal}
                 style={customStyles}
                 contentLabel="Example Modal"
             >
+                 <div style={{display:bookingData ? 'none': 'block'}} >
                 <h2 className="text-center text-brand">{BookOn}</h2>
                 <p className="text-secondary text-center"><small>ON {date.toDateString()}</small></p>
-                <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
+              
+               <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
                     <div className="form-group">
                         <input type="text" ref={register({ required: true })} name="name" placeholder="Your Name" className="form-control" />
                         {errors.name && <span className="text-danger">This field is required</span>}
@@ -85,8 +97,16 @@ const BookForm = ({modalIsOpen,closeModal,BookOn,date}) => {
                         <button type="submit" className="btn btn-brand">Send</button>
                     </div>
                 </form>
-            </Modal>
-    
+               </div>
+               
+               <div style={{display:bookingData ? 'block': 'none'}}>
+                   <h3>Please Pay</h3>
+                   <Elements stripe={stripePromise}>
+                   <ProcessPayment handlePayment={handlePaymentSuccess}></ProcessPayment>
+                   </Elements>
+               
+              </div>
+        </Modal>
     </div>
     );
 };
