@@ -1,6 +1,8 @@
 # PLUMBER MAMA WEB APP
 
-A Single page service app where people are able to select plumber service in their book service and more with their information to Dashboard.
+This is a full-stack website for a Plumber service. If a person wants to able to service
+this site, he/she can book their services and also can buy packages via the online
+payment system.
 
 [LIVE WEBSITE](https://plumber-bd.web.app/) | [Live API Server](https://peaceful-harbor-44348.herokuapp.com/)
 
